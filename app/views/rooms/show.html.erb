@@ -1,26 +1,40 @@
-<h1><%= @room.name %></h1>
+<div class="container">
+  <h1><%= @room.name %></h1>
 
-<p>ID: <%= @room.id %></p>
-<% if current_user.rooms.include?(@room) %>
-  <p>Posiadasz dostęp do tego pokoju. Możesz otworzyć drzwi!</p>
-<% end %>
-<% if current_user.rooms.include?(@room) %>
-  <%= form_with url: open_door_room_path(@room), method: :post do |f| %>
-    <%= f.submit "Otwórz drzwi" %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <p>ID: <%= @room.id %></p>
+      <% if current_user.rooms.include?(@room) %>
+        <p>Posiadasz dostęp do tego pokoju. Możesz otworzyć drzwi!</p>
+      <% end %>
+      <% if current_user.rooms.include?(@room) %>
+        <div class="form-group">
+          <%= form_with url: open_door_room_path(@room), method: :post do |f| %>
+            <%= f.submit "Otwórz drzwi", class: "btn btn-primary" %>
+            <% if flash[:success] %>
+              <p><%= flash[:success] %></p>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <% if flash[:error] %>
+    <div class="alert alert-danger">
+      <p><%= flash[:error] %></p>
+    </div>
   <% end %>
-<% end %>
-<% if flash[:success] %>
-  <p><%= flash[:success] %></p>
-<% elsif flash[:error] %>
-<p><%= flash[:error] %></p>
-<% end %>
-<% if current_user.admin? %>
-  <%= form_tag room_path(@room), method: :delete, data: { confirm: "Czy na pewno chcesz usunąć ten pokój?" } do %>
-    <%= submit_tag "Usuń" %>
+
+  <% if current_user.admin? %>
+    <div class="form-group">
+      <%= form_tag room_path(@room), method: :delete, data: { confirm: "Czy na pewno chcesz usunąć ten pokój?" } do %>
+        <%= submit_tag "Usuń", class: "btn btn-danger" %>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
-<%= link_to "Wstecz", rooms_path %>
 
-
-
-
+  <div>
+    <%= link_to "Wstecz", rooms_path, class: "btn btn-secondary" %>
+  </div>
+</div>

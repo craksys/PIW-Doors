@@ -13,9 +13,13 @@
   <body>
     <%= yield %>
   </body>
-<% if current_user %>
-  <%= link_to "Wyloguj", logout_path %>
-<% else %>
-  <%= link_to "Logowanie", login_path %>
-<% end %>
+
+  <div class="container">
+  <br><br>
+    <% if current_user %>
+      <%= link_to "Wyloguj", logout_path, class:"btn btn-primary" %>
+    <% else %>
+      <%= link_to "Logowanie", login_path, class:"btn btn-primary" %> 
+    <% end %> 
+  </div>
 </html>

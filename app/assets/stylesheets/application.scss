@@ -14,3 +14,10 @@
  *= require_self
  */
  @import 'bootstrap';
+
+ .toast {
+    &.bg-success {
+      background-color: green;
+    }
+  }
+  

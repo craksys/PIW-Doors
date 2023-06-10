@@ -28,21 +28,16 @@ def create
     @room = Room.find(params[:id])
 end
 
-#def open_door
- #   @room = Room.find(params[:id])
-  #  flash[:success] = "Drzwi zostały otwarte!"
-   # redirect_to @room
-  #end
-  def open_door
-  @room = Room.find(params[:id])
-  
-  if current_user && @room.users.include?(current_user)
-    flash[:success] = "Drzwi zostały otwarte!"
-  else
-    flash[:error] = "Nie masz uprawnień do otwarcia drzwi tego pokoju."
-  end
+def open_door
+@room = Room.find(params[:id])
 
-  redirect_to @room
+if current_user && @room.users.include?(current_user)
+  flash[:success] = "Drzwi zostały otwarte!"
+else
+  flash[:error] = "Nie masz uprawnień do otwarcia drzwi tego pokoju."
+end
+
+redirect_to @room
 end
 
 def update
@@ -64,8 +59,6 @@ end
 def edit
   @room = Room.find(params[:id])
 end
-
-
   
 def authorize_admin
   if current_user.nil? || !current_user.admin?
