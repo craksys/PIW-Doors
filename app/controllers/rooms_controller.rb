@@ -5,8 +5,7 @@ before_action :require_login
  # params.require(:room).permit(:name)
 #end
 def room_params
-    params.require(:room).permit(:name)
-    params.require(:room).permit(user_ids: [])
+	params.require(:room).permit(:name, user_ids: [])
   end
 
 def new
@@ -27,6 +26,23 @@ def create
 
   def show
     @room = Room.find(params[:id])
+end
+
+#def open_door
+ #   @room = Room.find(params[:id])
+  #  flash[:success] = "Drzwi zostały otwarte!"
+   # redirect_to @room
+  #end
+  def open_door
+  @room = Room.find(params[:id])
+  
+  if current_user && @room.users.include?(current_user)
+    flash[:success] = "Drzwi zostały otwarte!"
+  else
+    flash[:error] = "Nie masz uprawnień do otwarcia drzwi tego pokoju."
+  end
+
+  redirect_to @room
 end
 
 def update
@@ -50,6 +66,7 @@ def edit
 end
 
 
+  
 def authorize_admin
   if current_user.nil? || !current_user.admin?
     flash[:alert] = "Musisz być administratorem aby uzyskać dostęp"
