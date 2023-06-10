@@ -1,0 +1,15 @@
+<h1>Zaloguj się</h1>
+
+<%= form_with url: login_path, local: true do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <br>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <br>
+
+  <%= f.submit "Zaloguj się"%>
+<% end %>
+
+<%= link_to "Rejestracja", new_user_path %>
