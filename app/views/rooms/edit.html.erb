@@ -1,0 +1,16 @@
+<h1>Edytuj pokój</h1>
+
+<%= form_for @room do |f| %>
+  <div>
+    <strong>Nazwa pokoju:</strong>
+    <%= @room.name %>
+  </div>
+
+  <h2>Dodaj użytkowników do pokoju:</h2>
+  <%= f.collection_check_boxes :user_ids, User.all, :id, :email do |b| %>
+    <%= b.check_box %>
+    <%= b.label %><br>
+  <% end %>
+
+  <%= f.submit "Zapisz zmiany" %>
+<% end %>

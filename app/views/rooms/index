@@ -20,15 +20,8 @@
         <% if current_user.admin? %>
           <td>
             <%= link_to "Edytuj", edit_room_path(room) %>
-            <%= link_to "Usuń", room_path(room), method: :delete, data: { confirm: "Czy na pewno chcesz usunąć ten pokój?" } %>
-          </td>
-        <% else %>
-          <td>
-            <% if room.users.include?(current_user) %>
-              <%= link_to "Wejdź do pokoju", room_path(room) %>
-            <% else %>
-              <em>Brak dostępu</em>
-            <% end %>
+            <%= link_to "Usuń", room_path(room), method: :destroy, data: { confirm: "Czy na pewno chcesz usunąć ten pokój?" } %>
+
           </td>
         <% end %>
       </tr>

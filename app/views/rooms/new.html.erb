@@ -1,0 +1,8 @@
+<h1>Dodaj nowy pokój</h1>
+
+<%= form_with model: @room, local: true do |f| %>
+  <%= f.label :name, "Nazwa pokoju" %>
+  <%= f.text_field :name %>
+
+  <%= f.submit "Utwórz pokój" %>
+<% end %>

@@ -1,0 +1,10 @@
+<h1><%= @room.name %></h1>
+
+<p>ID: <%= @room.id %></p>
+<%= form_tag room_path(@room), method: :delete, data: { confirm: "Czy na pewno chcesz usunąć ten pokój?" } do %>
+  <%= submit_tag "Usuń" %>
+<% end %>
+<%= link_to "Wstecz", rooms_path %>
+
+
+
