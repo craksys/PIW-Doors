@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1>Confirmation Page</h1>
+      <p>Are you sure you want to proceed?</p>
+      <div class="d-flex justify-content-center">
+        <%= link_to "Confirm", revoke_permit_path, method: :post, class: "btn btn-primary mr-2" %>
+        <%= link_to "Cancel", root_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
