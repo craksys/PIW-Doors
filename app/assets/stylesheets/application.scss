@@ -13,3 +13,44 @@
  *= require_tree .
  *= require_self
  */
+ @import 'bootstrap';
+
+ .navbar {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.navbar-buttons {
+  position: absolute;
+  right: 10px;
+  margin: 0.5rem;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.bold-text {
+  font-weight: bold;
+}

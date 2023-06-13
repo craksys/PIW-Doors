@@ -8,14 +8,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
   </head>
 
+  <%= render 'layouts/navbar' %>
+  
   <body>
     <%= yield %>
   </body>
-<% if current_user %>
-  <%= link_to "Wyloguj", logout_path %>
-<% else %>
-  <%= link_to "Logowanie", login_path %>
-<% end %>
 </html>
