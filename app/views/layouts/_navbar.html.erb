@@ -1,0 +1,17 @@
+<div class="navbar">
+  <nav>
+    <ul>
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'About', about_path %></li>
+      <li><%= link_to 'Contact', contact_path %></li>
+    </ul>
+    <div class="navbar-buttons">
+    <% if current_user %>
+        <%= content_tag(:span, "Zalogowany jako: " + current_user.email, class: "custom-font", style: "font-weight: bold;") %>
+        <%= link_to "Zgubiłem kartę", lost_card_path, class: "btn btn-primary", id: "confirm-button"%>
+        <%= link_to "Wyloguj", logout_path, class: "btn btn-primary" %>
+    <% end %>
+    <br>
+    </div>
+  </nav>
+</div>

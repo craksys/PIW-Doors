@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Pokoje</h1>
+</div>
+
+<div class="container">
+<% if current_user.admin? %>
+  <%= button_to "Dodaj nowy pokój", new_room_path, method: :get, class: "btn btn-primary" %>
+<% end %>
+</div>
+
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nazwa</th>
+        <% if current_user.admin? %>
+          <th>Akcje</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rooms.each do |room| %>
+        <tr>
+          <td><%= room.name %></td>
+          <% if current_user.admin? %>
+            <td>
+              <%= link_to "Edytuj", edit_room_path(room), class: "btn btn-primary btn-sm" %>
+              <%= link_to "Usuń", room_path(room), method: :delete, data: { confirm: "Czy na pewno chcesz usunąć ten pokój?" }, class: "btn btn-danger btn-sm" %>
+            </td>
+          <% else %>
+            <td>
+              <% if room.users.include?(current_user) %>
+                <%= link_to "Wejdź do pokoju", room_path(room), class: "btn btn-primary btn-sm" %>
+              <% else %>
+                <em>Brak dostępu</em>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

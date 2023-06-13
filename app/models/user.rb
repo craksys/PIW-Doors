@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_one :card
-    has_many :access_rights
-    has_many :logs
+  has_secure_password
+  has_and_belongs_to_many :rooms
 end
+

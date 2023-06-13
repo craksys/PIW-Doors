@@ -1,0 +1,30 @@
+<h1>Lista pokoi</h1>
+
+<% if current_user.admin? %>
+  <%= link_to "Dodaj nowy pokój", new_room_path %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nazwa</th>
+      <% if current_user.admin? %>
+        <th>Akcje</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td><%= room.name %></td>
+        <% if current_user.admin? %>
+          <td>
+            <%= link_to "Edytuj", edit_room_path(room) %>
+            <%= link_to "Usuń", room_path(room), method: :destroy, data: { confirm: "Czy na pewno chcesz usunąć ten pokój?" } %>
+
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
