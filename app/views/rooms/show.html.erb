@@ -1,4 +1,7 @@
+<%= stylesheet_link_tag 'show.css' %>
+
 <div class="container">
+
   <h1><%= @room.name %></h1>
 
   <div class="panel panel-default">
@@ -37,4 +40,23 @@
   <div>
     <%= link_to "Wstecz", rooms_path, class: "btn btn-secondary" %>
   </div>
+
+<% if current_user.admin? %>
+  <h2>Użytkowanie pokoju:</h2>
+
+<% if @room.door_usages.any? %>
+  <ul class="room-usage-list">
+    <% @room.door_usages.each do |usage| %>
+      <li>
+        <strong>Użytkownik:</strong> <%= usage.user.email %><br>
+        <strong>Data otwarcia:</strong> <%= usage.opened_at %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= button_to 'Wyczyść log', clear_log_room_path(@room), method: :post, data: { confirm: 'Czy na pewno chcesz wyczyścić log?' }, class: 'clear-log-button' %>
+<% else %>
+  <p>Brak danych o używaniu pokoju.</p>
+<% end %>
+<% end %>
 </div>

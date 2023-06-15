@@ -1,0 +1,4 @@
+.room-usage-list {
+  max-height: 300px; /* Maksymalna wysokość listy */
+  overflow-y: auto; /* Dodaje pasek przewijania, gdy lista przekracza maksymalną wysokość */
+}

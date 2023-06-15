@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :require_login
-  before_action :authorize_admin, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authorize_admin, only: [:new, :edit, :create, :update, :destroy, :clear_log, :show_usages]
 
   def room_params
     params.require(:room).permit(:name, user_ids: [])
@@ -12,6 +12,18 @@ class RoomsController < ApplicationController
 
   def index
       @rooms = Room.all
+  end
+
+  def show_usages
+  @room = Room.find(params[:id])
+  @usages = @room.door_usages
+  end
+
+  def clear_log
+    @room = Room.find(params[:id])
+    @room.door_usages.destroy_all
+
+    redirect_to @room, notice: 'Log został wyczyszczony.'
   end
 
   def create
@@ -32,6 +44,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
 
     if current_user && @room.users.include?(current_user)
+      DoorUsage.create(user: current_user, room: @room, opened_at: Time.now)
       flash[:success] = "Drzwi zostały otwarte!"
     else
       flash[:error] = "Nie masz uprawnień do otwarcia drzwi tego pokoju."

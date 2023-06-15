@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :users
   resources :rooms do
     member do
+      get 'show_usages'
       post 'open_door'
+      post 'clear_log'
     end
   end
 
