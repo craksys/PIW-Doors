@@ -26,6 +26,7 @@
             <td>
               <%= link_to "Edytuj", edit_room_path(room), class: "btn btn-primary btn-sm" %>
               <%= link_to "Usuń", room_path(room), method: :delete, data: { confirm: "Czy na pewno chcesz usunąć ten pokój?" }, class: "btn btn-danger btn-sm" %>
+              <%= link_to "Wejdź do pokoju", room_path(room), class: "btn btn-primary btn-sm" %>
             </td>
           <% else %>
             <td>
