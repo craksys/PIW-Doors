@@ -54,7 +54,7 @@
     <% end %>
   </ul>
 
-  <%= button_to 'Wyczyść log', clear_log_room_path(@room), method: :post, data: { confirm: 'Czy na pewno chcesz wyczyścić log?' }, class: 'clear-log-button' %>
+  <%= button_to 'Wyczyść log', clear_log_room_path(@room), method: :post, data: { confirm: 'Czy na pewno chcesz wyczyścić log?' }, class: 'btn btn-primary btn-sm' %>
 <% else %>
   <p>Brak danych o używaniu pokoju.</p>
 <% end %>
