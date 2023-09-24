@@ -35,6 +35,8 @@ Add the following to the end of `~/.bashr` (`nano ~/.bashrc`):
 
 `. "$HOME/.asdf/completions/asdf.bash"`
 
+Exit vi or nano and type:
+
 `source ~/.bashrc`
 
 `asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`
@@ -51,9 +53,9 @@ Add the following to the end of `~/.bashr` (`nano ~/.bashrc`):
 
 `gem install rails`
 
-`git clone https://github.com/craksys/PSIM-Doors`
+`git clone https://github.com/craksys/PWR-doors-access`
 
-`cd PSIM-Doors`
+`cd PWR-doors-access`
 
 `bundle install --gemfile $PWD/Gemfile`
 
